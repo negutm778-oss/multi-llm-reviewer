@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
   review:
     runs-on: ubuntu-latest
@@ -15,5 +19,6 @@ jobs:
         uses: ./ 
         with:
           provider: 'groq'
+          model: 'llama3-8b-8192'
           api_key: ${{ secrets.GROQ_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
