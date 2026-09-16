@@ -1,0 +1,19 @@
+name: Multi-LLM PR Reviewer Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Multi-LLM Reviewer
+        uses: ./ 
+        with:
+          provider: 'groq'
+          api_key: ${{ secrets.GROQ_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
