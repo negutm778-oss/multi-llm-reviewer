@@ -1,0 +1,30 @@
+name: 'Multi-LLM PR Reviewer'
+description: 'Automated PR code & security review using OpenAI, Claude, Gemini, Groq, DeepSeek, or Ollama.'
+author: 'Your Name'
+
+inputs:
+  provider:
+    description: 'AI Provider (openai, claude, gemini, groq, deepseek, ollama)'
+    required: true
+    default: 'groq'
+  api_key:
+    description: 'API Key for the selected provider (not required for local Ollama)'
+    required: false
+  model:
+    description: 'Specific model to use (e.g. gpt-4o, claude-3-5-sonnet, llama-3.3-70b-versatile)'
+    required: false
+  base_url:
+    description: 'Custom base URL (useful for self-hosted Ollama or custom endpoints)'
+    required: false
+  github_token:
+    description: 'GitHub token for reading PR diffs and posting comments'
+    required: true
+    default: '${{ github.token }}'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'check-circle'
+  color: 'purple'
